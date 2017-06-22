@@ -1,3 +1,91 @@
-page-home {
+.home {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
 
+
+  .header{
+    background-color: $yellow;
+    text-align: center;
+    overflow: hidden;
+    height: 55%;
+    float: left;
+    width: 100vw;
+    -webkit-box-shadow: inset 0px 0px 21px -2px rgba(138,138,138,1);
+    -moz-box-shadow: inset 0px 0px 21px -2px rgba(138,138,138,1);
+    box-shadow: inset 0px 0px 21px -2px rgba(138,138,138,1);
+
+    .settings-btn{
+      display: block;
+      text-align: center;
+
+      @extend .center-horizontally;
+
+      img{
+        width: 1.5em;
+      }
+
+      .link{
+        color: #FFF;
+        letter-spacing: 0;
+        margin-bottom: 0.5em;
+      }
+    }
+
+    .title{
+      color: #FFF;
+      margin-top: 0;
+    }
+
+    .title-2{
+      width: 9em;
+      color: $dark-blue;
+      margin: 1em 0 3em 0;
+      @extend .center-horizontally;
+    }
+
+    .logo{
+      width: 4.5em;
+      margin: 3.5em 0 1em 0;
+
+      .a{
+        stroke-width: 7px;
+        stroke: $dark-blue;
+      }
+    }
+
+  }
+
+  .nav{
+    position: relative;
+    overflow: auto;
+    height: 45%;
+    float: left;
+    width: 100vw;
+
+    .btn-wrapper{
+      position: relative;
+      overflow: auto;
+      @extend .center-vertically;
+    }
+
+    button{
+      display: block;
+      position: relative;
+      overflow: auto;
+
+      @extend .center-horizontally;
+      margin: 3em 0;
+
+      svg{
+        width: 5em;
+      }
+    }
+
+    .link{
+        color: $yellow;
+        margin-bottom: 0;
+    }
+
+  }
 }

@@ -1,0 +1,66 @@
+<!-- Generated template for the StartComponent component -->
+<ion-content class="start" >
+
+  <div class="start-fixed" padding>
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 141.3 164.5"
+      [ngClass]="showingLogin?'showingLogin':''">
+      <style>.a{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:6px;stroke:#000;}</style>
+      <title>  sketch_3</title>
+      <path d="M138.3 127.7H94.2C60.7 127.7 36.7 97.7 36.7 63.8s23.7-60.8 50.8-60.8h50.8L104.6 36.7H53.8c-27.1 0-50.8 26.9-50.8 60.8s24 63.9 57.4 63.9h44.1Z" class="a"/>
+      <polygon points="104.6 161.5 138.3 127.7 138.3 3 104.6 36.8 104.6 161.5" class="a"/>
+    </svg>
+
+    <h1 class="title">Curio</h1>
+
+    <img *ngIf="!showingLogin" class="loader" src="./assets/img/icon/loader.svg" alt="loader animation">
+
+    <div class="login" [ngClass]="showingLogin?'showingLogin':''">
+      <ion-segment [(ngModel)]="authType" color="primary" (click)="authTypeChanged()">
+        <ion-segment-button value="aanmelden">
+          Aanmelden
+        </ion-segment-button>
+        <ion-segment-button value="registreren">
+          Registreren
+        </ion-segment-button>
+      </ion-segment>
+
+      <form #signForm="ngForm" (ngSubmit)="authenticate(signForm.value)" [formGroup]="formOne">
+        <ion-item>
+          <ion-input formControlName="email" placeholder="E-mail" type="text" name="email" ngModel clearInput></ion-input>
+        </ion-item>
+        <ion-item class="errorMessage" *ngIf="!formOne.controls.email.valid && formOne.controls.email.dirty && formOne.controls.email.touched">
+          <p class="errorMessage" *ngIf="!formOne.controls.email.valid  && formOne.controls.email.errors.email && formOne.controls.email.dirty">Geen geldig e-mailadres</p>
+          <p class="errorMessage" *ngIf="!formOne.controls.email.valid  && formOne.controls.email.errors.maxlength && formOne.controls.email.dirty">Uw e-mailadres is te lang</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="password" placeholder="Wachtwoord" type="password" name="password" ngModel clearInput></ion-input>
+        </ion-item>
+        <ion-item class="errorMessage" *ngIf="!formOne.controls.password.valid && formOne.controls.password.dirty && formOne.controls.password.touched">
+          <p class="errorMessage" *ngIf="!formOne.controls.password.valid  && formOne.controls.password.errors.required && formOne.controls.password.dirty">U moet een wachtwoord invoeren</p>
+          <p class="errorMessage" *ngIf="!formOne.controls.password.valid  && formOne.controls.password.errors.maxlength && formOne.controls.password.dirty ">Uw wachtwoord is te lang</p>
+          <p class="errorMessage" *ngIf="!formOne.controls.password.valid  && formOne.controls.password.errors.minlength && formOne.controls.password.dirty ">Minstens 6 tekens ingeven</p>
+        </ion-item>
+
+        <div class="name-wrapper" [ngClass]="authType!='aanmelden'?'showingLogin':'hide'" >
+          <ion-item>
+            <ion-input formControlName="first_name" placeholder="Voornaam" type="text" name="first_name" ngModel clearInput></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input formControlName="name" placeholder="Naam" type="text" name="name" ngModel clearInput></ion-input>
+          </ion-item>
+          <ion-item class="errorMessage" *ngIf="(!formOne.controls.first_name.valid && formOne.controls.first_name.dirty && formOne.controls.first_name.touched) || (!formOne.controls.name.valid && formOne.controls.name.dirty && formOne.controls.name.touched)">
+            <p class="errorMessage" *ngIf="(!formOne.controls.first_name.valid && formOne.controls.first_name.dirty) || (!formOne.controls.name.valid && formOne.controls.name.dirty)">U moet een voornaam en achternaam invoeren</p>
+          </ion-item>
+        </div>
+
+        <div>
+          <button block type="submit link" [disabled]="(authType=='aanmelden' && !formOne.controls.password.valid || !formOne.controls.email.valid) || (authType!='aanmelden' && !formOne.valid)">{{ authType }}</button>
+        </div>
+      </form>
+
+      <button  *ngIf="authType=='aanmelden'" class="link forgotPassword" (click)="goToForgetPassword()">Wachtwoord vergeten?</button>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,5 +1,11 @@
 {
   "name": "Curio",
-  "app_id": "",
-  "type": "ionic-angular"
+  "app_id": "9fa35d35",
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://curio.vicdenys.be/api"
+    }
+  ]
 }

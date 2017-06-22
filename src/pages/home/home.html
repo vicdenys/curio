@@ -1,14 +1,58 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="home" no-bounce>
+  <div class="header">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <button class="settings-btn" (touchend)="openSettings()">
+      <p class="link">settings</p>
+      <img src="./assets/img/icon/settings_icon.png" alt="modules icon">
+    </button>
+
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 141.3 164.5">
+      <style>.a{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:6px;stroke:#000;}</style>
+      <title>  sketch_3</title>
+      <path d="M138.3 127.7H94.2C60.7 127.7 36.7 97.7 36.7 63.8s23.7-60.8 50.8-60.8h50.8L104.6 36.7H53.8c-27.1 0-50.8 26.9-50.8 60.8s24 63.9 57.4 63.9h44.1Z" class="a"/>
+      <polygon points="104.6 161.5 138.3 127.7 138.3 3 104.6 36.8 104.6 161.5" class="a"/>
+    </svg>
+
+    <h1 class="title">{{ welcomeText }}</h1>
+    <h3 class="title-2">{{ welcomeQuestion }}</h3>
+  </div>
+  <div class="nav">
+    <div class="btn-wrapper">
+      <button (touchend)="goToModules()">
+
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 101.08 73.36">
+          <defs>
+            <clipPath id="clip-path" transform="translate(-370.41 -260.96)">
+              <path d="M406.27,274a4.9,4.9,0,0,1,4.88-4.89h19.59a4.89,4.89,0,0,1,4.88,4.89v47.28a4.9,4.9,0,0,1-4.88,4.89H411.15a4.89,4.89,0,0,1-4.88-4.89Z" style="fill:none;clip-rule:evenodd"/>
+            </clipPath>
+            <clipPath id="clip-path-2" transform="translate(-370.41 -260.96)">
+              <path d="M438.88,278.88a4.89,4.89,0,0,1,4.89-4.88h14.67a4.89,4.89,0,0,1,4.89,4.88V316.4a4.89,4.89,0,0,1-4.89,4.88H443.77a4.89,4.89,0,0,1-4.89-4.88Z" style="fill:none;clip-rule:evenodd"/>
+            </clipPath>
+            <clipPath id="clip-path-3" transform="translate(-370.41 -260.96)">
+              <path d="M378.56,278.88a4.89,4.89,0,0,1,4.89-4.88h14.67a4.89,4.89,0,0,1,4.89,4.88V316.4a4.89,4.89,0,0,1-4.89,4.88H383.45a4.89,4.89,0,0,1-4.89-4.88Z" style="fill:none;clip-rule:evenodd"/>
+            </clipPath>
+          </defs>
+          <title>modules_icon</title>
+          <g style="clip-path:url(#clip-path)">
+            <rect x="27.72" width="45.65" height="73.36" style="fill:#feba00"/>
+          </g>
+          <g style="clip-path:url(#clip-path-2)">
+            <rect x="60.32" y="4.89" width="40.76" height="63.58" style="fill:#feba00"/>
+          </g>
+          <g style="clip-path:url(#clip-path-3)">
+            <rect y="4.89" width="40.76" height="63.58" style="fill:#feba00"/>
+          </g>
+        </svg>
+        <p class="link">Modules</p>
+      </button>
+      <button (touchend)="goToResults()">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 95.11 48.14">
+          <title>results_icon</title>
+          <polyline points="3 0 3 45.14 95.11 45.14" style="fill:none;stroke:#feba00;stroke-miterlimit:10;stroke-width:6px"/>
+          <polyline points="3.91 43.34 23.77 25.28 29.19 37.92 40.03 14.45 52.67 27.09 67.11 16.25 92.39 30.7" style="fill:none;stroke:#feba00;stroke-miterlimit:10;stroke-width:3px"/>
+        </svg>
+        <p class="link">Resultaten</p>
+      </button>
+    </div>
+  </div>
 </ion-content>

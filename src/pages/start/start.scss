@@ -1,0 +1,176 @@
+.start {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $yellow;
+
+  .start-fixed{
+    width: 100vw;
+  }
+
+  .title{
+    color: $dark-blue;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .loader{
+    position: relative;
+    @extend .center-horizontally;
+  }
+
+  .logo{
+    width: 4.5em;
+    margin-top: 40%;
+    position: relative;
+    display: block;
+    @extend .center-horizontally;
+
+    -webkit-transition: margin 1s;
+    -moz-transition: margin 1s;
+    -o-transition: margin 1s;
+    transition: margin 1s;
+
+    .a{
+      stroke-width: 7px;
+      stroke: $dark-blue;
+    }
+  }
+
+  .logo.showingLogin{
+    margin-top: 20%;
+  }
+
+  .login{
+    opacity: 0;
+    margin-top: 3em;
+    padding: 2em;
+    padding-top: 0;
+
+    -webkit-transition: opacity 1s 0.5s;
+    -moz-transition: opacity 1s 0.5s;
+    -o-transition: opacity 1s 0.5s;
+    transition: opacity 1s 0.5s;
+
+    ion-item .button-clear-ios{
+      background-color: transparent;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+      margin: 0;
+    }
+
+    .item-input.ng-invalid.ng-dirty.ng-touched {
+      border: 2px solid $red-danger !important;
+    }
+
+    .errorMessage{
+      background-color: transparent;
+      color: $red-danger;
+      padding-left: 16px;
+      font-size: 0.9em;
+      border: none;
+      min-height: initial;
+
+      ion-label{
+        margin-top: 2px;
+        margin-bottom: 0;
+      }
+
+      p.errorMessage{
+       padding-left: 0;
+       font-family: 'MontserratBlack';
+      }
+
+      .item-inner{
+        border: none;
+      }
+    }
+
+    .name-wrapper{
+      ion-item{
+          width: 49%;
+          float: left;
+          margin-left: 2%;
+      }
+
+      ion-item:first-child{
+          margin-left: 0;
+      }
+
+      .errorMessage{
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+
+    .item-input{
+      background-color: rgba(256,256,256,0.9);
+      margin-top: 0.3em;
+      border: none;
+      border-radius: 4px;
+
+      .item-inner{
+        border: none;
+
+        input{
+          color: $dark-blue;
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    button{
+      @extend .link;
+      margin-top: 1.5em;
+      padding: 1.2em;
+      background-color: $dark-blue;
+      font-size: 0.8em;
+      color: #FFF;
+      width: 100%;
+      border-radius: 4px;
+
+    }
+
+    .forgotPassword{
+      background-color: transparent;
+      color: black;
+      text-decoration: underline;
+      text-transform: none;
+      margin-top: 0;
+      font-family: 'MontserratRegular', sans-serif;
+    }
+
+    ion-segment{
+      border-radius: 0;
+      margin-bottom: 1.5em;
+
+      ion-segment-button{
+        @extend .link;
+        color: rgba(0,0,0,0.3);
+        border: none;
+        font-size: 0.8em;
+        background-color: transparent;
+        border-bottom: solid 1px rgba(0,0,0,0.3);
+        border-radius: 0 !important;
+        text-transform: uppercase;
+
+      }
+
+      ion-segment-button.segment-activated{
+        color: $dark-blue;
+        border-color: $dark-blue;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .login.showingLogin{
+    opacity: 1;
+  }
+
+
+}

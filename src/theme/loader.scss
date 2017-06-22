@@ -1,0 +1,19 @@
+.app-root{
+  .loading-ios{
+    .loading-wrapper{
+      background: #f8f8f8;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      .loading-content > *{
+        text-align: center;
+      }
+
+      img{
+        position: relative;
+      }
+    }
+  }
+}

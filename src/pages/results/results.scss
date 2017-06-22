@@ -1,0 +1,43 @@
+.results{
+  background-color: $yellow;
+
+
+  .graph-wrapper{
+    margin-top: 2em;
+    .graph{
+      width: 66vw;
+      height: 66vw;
+    }
+  }
+
+  .period-selector-wrapper{
+    background-color: #FFF;
+    padding: 0.1em 25px;
+    text-align: center;
+    margin-top: 4em;
+    position: relative;
+
+    .arrow-left, .arrow-right{
+      @extend .center-vertically;
+      width: 0px;
+      height: 0;
+      position: absolute;
+      border-top: solid 0.5em transparent;
+      border-bottom: solid 0.5em transparent;
+
+    }
+    .arrow-left{
+      border-right: solid 0.5em $dark-blue;
+      left: 25px;
+    }
+
+    .arrow-right{
+      border-left: solid 0.5em $dark-blue;
+      right: 25px;
+    }
+
+    p{
+      color: $dark-blue;
+    }
+  }
+}

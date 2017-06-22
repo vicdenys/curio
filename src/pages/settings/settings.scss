@@ -1,0 +1,31 @@
+.settings{
+  background-color:  $yellow;
+  -webkit-box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
+
+  .scroll-content{
+    padding: 1em 1.5em;
+  }
+
+  #home_icon{
+    display: block;
+    width: 1.5em;
+
+    .a{
+      stroke-width: 16px;
+      stroke: #FFF;
+    }
+  }
+
+  .logoutBtn{
+    @extend .link;
+    margin-top: 1.5em;
+    padding: 1.2em;
+    background-color: $red-danger;
+    font-size: 0.8em;
+    color: #FFF;
+    width: 100%;
+    border-radius: 4px;
+  }
+}

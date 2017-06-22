@@ -3,6 +3,7 @@
 $font-path: "../assets/fonts";
 
 @import "ionic.globals";
+@import "loader";
 
 
 // Shared Variables
@@ -31,11 +32,15 @@ $colors: (
   dark:       #222
 );
 
+$yellow: #FEBA00;
+$dark-blue: #1A3446;
+$red-danger: #DB0D3F;
+$light-grey: #E8E8E8;
+$grey: #D8D8D8;
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
 
 
 
@@ -71,8 +76,71 @@ $colors: (
 @import "ionic.ionicons";
 
 
+
+
 // Fonts
 // --------------------------------------------------
 
 @import "roboto";
 @import "noto-sans";
+@import "fonts";
+
+// ELEMENTS
+// --------------------------------------------------
+@import "elements";
+
+
+*{
+  font-family: 'MontserratRegular';
+}
+
+.link{
+  font-family: 'MontserratBold';
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.title{
+  font-family: 'MontserratBold';
+  font-size: 2em;
+}
+
+.title-2{
+  font-family: 'MontserratBold';
+  font-size: 1em;
+}
+
+
+// Buttons
+// --------------------------------------------------
+
+button{
+  background-color: transparent;
+}
+
+
+// ETC.
+// --------------------------------------------------
+
+.center-horizontally{
+  left: 50%;
+  position: relative;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.center-vertically{
+  top: 50%;
+  position: relative;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.hide{
+  display: none;
+}

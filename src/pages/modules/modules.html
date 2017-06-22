@@ -1,0 +1,57 @@
+<ion-content no-bounce class="modules"  [ngClass]="moduleProv.modulesAreLoading?'is-loading': ''">
+
+  <div class="loader" *ngIf="moduleProv.modulesAreLoading">
+    <p>Modules laden...</p>
+    <img src="./assets/img/icon/loader.svg"  alt="loader">
+  </div>
+  <ion-refresher (ionRefresh)="doRefresh($event)" enabled='{{ contentShowing && isAtTop && !draggingGraph }}'>
+    <ion-refresher-content
+      pullingIcon='none'
+      pullingText='close'
+      refreshingSpinner="none"
+      refreshingText="close">
+
+    ></ion-refresher-content>
+  </ion-refresher>
+  <svg id="home_icon" [ngClass]="moodIsActive" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129.83 129.51" (touchend)="goToHome()">
+    <title>home</title>
+    <path class="a" d="M462.74,298.17V342.7a11.17,11.17,0,0,1-11.19,11.19H390.34a11.19,11.19,0,0,1-11.19-11.19V298.17H367.38c-3.06,0-3.77-1.77-1.57-4L417,243a5.61,5.61,0,0,1,7.94,0l51.17,51.17c2.19,2.19,1.5,4-1.57,4Z" transform="translate(-356.03 -232.88)" />
+  </svg>
+
+  <div class="modules-wrapper">
+
+
+    <p class="moduleCount" [ngClass]="[contentShowing?'show-content':'', moodIsActive?'mood-active':'']" [ngClass]="">
+      module <br>
+      {{ currentIndex }} / {{ moduleProv.modules.length }}
+    </p>
+
+    <ion-slides (ionSlideDidChange)="slideChanged()" >
+      <ion-slide (press)=openContent(module) *ngFor="let module of moduleProv.modules" id="{{ module.moduleType }}">
+
+        <div class="content" [ngClass]="module.showContent?'show-content':''" on-scroll='slideScrolled($event)'>
+          <div class="text-wrapper header" >
+            <h1 class="moduleTitle">{{ module.title }}</h1>
+            <p class="moduleDescription">{{ module.description }}</p>
+          </div>
+          <p class="pressText" [ngClass]="contentShowing?'show-content':''">Houd ingedrukt om te openen</p>
+
+          <div *ngIf='module.moduleType=="read-module"' class="content-wrapper main-content" [innerHTML]="module.content" >
+
+          </div>
+
+          <div *ngIf='module.moduleType=="sleep-module"' class="content-wrapper main-content">
+            <div sleepmodule [module]="module" [isOnSeconPage]='isOnSecondPage'></div>
+          </div>
+
+          <div *ngIf='module.moduleType=="mood-module"' class="content-wrapper main-content">
+            <div moodmodule [module]="module" ></div>
+          </div>
+
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+</ion-content>

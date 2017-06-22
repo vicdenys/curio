@@ -1,0 +1,42 @@
+<div class="wrapperbox">
+  <div class="first-wrapper wrapper" [ngClass]='modulesPage.wrapperIndex==1?"show-wrapper":""'>
+    <h2>Hoeveel uur heb je geslapen deze nacht?</h2>
+    <div class="amountpicker">
+      <div class="min" (touchend)="adjustAmount('-')" [ngClass]='module.sleepHours==AMOUNTMINMAX.min?"disable":""'>
+        <p>-</p>
+      </div>
+      <div class="amount">
+        <h3>{{ module.sleepHours}}</h3>
+        <p>uur</p>
+      </div>
+      <div class="min" (touchend)="adjustAmount('+')" [ngClass]='module.sleepHours==AMOUNTMINMAX.max?"disable":""'>
+        <p>+</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="second-wrapper wrapper" [ngClass]='modulesPage.wrapperIndex==2?"show-wrapper":""'>
+    <h2>Op een schaal van 1 tot 10, Hoe beoordeel je je slaap van deze nacht??</h2>
+    <div class="amountpicker">
+          <div class="min" (touchend)="adjustQuality('-')" [ngClass]='module.sleepQuality==QUALITYMINMAX.min?"disable":""'>
+            <p>-</p>
+          </div>
+          <div class="amount">
+            <h3>{{ module.sleepQuality }}</h3>
+          </div>
+          <div class="min" (touchend)="adjustQuality('+')" [ngClass]='module.sleepQuality==QUALITYMINMAX.max?"disable":""'>
+            <p>+</p>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="next-btn-wrapper" (touchend)=nextWrapper() *ngIf='modulesPage.wrapperIndex!=2'  >
+  <p class="next-btn"  >
+    Volgende
+  </p>
+</div>
+<div class="next-btn-wrapper" (touchend)=submitResult() *ngIf='modulesPage.wrapperIndex>=2' >
+  <p class="next-btn"  >
+    Opslaan
+  </p>
+</div>
