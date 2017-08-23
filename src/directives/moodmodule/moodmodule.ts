@@ -156,6 +156,10 @@ export class MoodmoduleDirective {
     })
   }
 
+  private deleteImg(module){
+    module.image = null;
+  }
+
   // Get the data of an image from camera
   private takePictureWithCamera(sourceType){
 
@@ -211,6 +215,9 @@ export class MoodmoduleDirective {
         this.loading.dismiss();
         this.showSuccess();
         this.modulesPage.slideChanged();
+        this.module.moodCoord = [];
+        this.module.image = null;
+        this.module.moodText = '';
         console.log(data);
       }
     ).catch(

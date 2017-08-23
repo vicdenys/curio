@@ -1,12 +1,76 @@
 .results{
-  background-color: $yellow;
+  background-color: #FFF;
+
+  #home_icon{
+    .a{
+      stroke: #000;
+    }
+  }
+
+  .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    background-color: darken($grey, 55%);
+  }
 
 
   .graph-wrapper{
-    margin-top: 2em;
+    margin-top: 10vh;
+    padding: 7vh;
+    background-color: #F4F4F4;
+    -webkit-box-shadow: inset 0px 0px 21px -2px rgba(138,138,138,1);
+    -moz-box-shadow: inset 0px 0px 21px -2px rgba(138,138,138,1);
+    box-shadow: inset 0px 0px 21px -2px rgba(138,138,138,1);
+
+    .loading-wrapper{
+        height: 30vh;
+        padding: 7vh;
+        text-align: center;
+        opacity: 1;
+
+        p{
+          font-family: 'MontserratBold', sans-serif;
+        }
+
+        img{
+          @extend .center-horizontally;
+          position: absolute;
+        }
+      }
     .graph{
-      width: 66vw;
-      height: 66vw;
+      width: 30vh;
+      height: 30vh;
+
+      .line-horizontal, .line-vertical{
+        background-color: #F4F4F4;
+      }
+
+      #indicator{
+        opacity: 0.3;
+      }
+
+      #indicator.selected{
+        opacity: 1;
+        width: 1.5em;
+        height: 1.5em;
+      }
+
+      #indicator.sleepresults-indic{
+        opacity: 0.8;
+        background-color: $light-grey;
+      }
+
+      #indicator.sleepresults-indic.no-data{
+        opacity: 1;
+        background-color: transparent !important;
+
+      }
+      #indicator.sleepresults-indic.no-data::after{
+        content: 'x';
+        position: relative;
+        font-family: 'MontserratRegular', sans-serif;
+        font-size: 1.2em;
+        line-height: 0;
+      }
+
     }
   }
 
@@ -14,8 +78,35 @@
     background-color: #FFF;
     padding: 0.1em 25px;
     text-align: center;
-    margin-top: 4em;
     position: relative;
+    border-bottom: solid 2px #F4F4F4;
+    height: 9vh;
+
+    .loading-wrapper{
+      opacity: 1;
+
+      .loader-block{
+        width: 6em;
+        height: 0.6em;
+        background-color: $grey;
+        @extend .center-horizontally;
+        @extend .center-vertically;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        position: absolute;
+      }
+    }
+
+    .arrow-wrapper-left, .arrow-wrapper-right{
+      position: absolute;
+      @extend .center-vertically;
+      width: 3em;
+      height: 3em;
+      z-index: 10000;
+    }
+    .arrow-wrapper-right{
+      right: 25px;
+    }
 
     .arrow-left, .arrow-right{
       @extend .center-vertically;
@@ -28,16 +119,205 @@
     }
     .arrow-left{
       border-right: solid 0.5em $dark-blue;
-      left: 25px;
+      left: 0;
     }
 
     .arrow-right{
       border-left: solid 0.5em $dark-blue;
-      right: 25px;
+      right: 0;
     }
 
     p{
       color: $dark-blue;
+      @extend .center-vertically;
+      margin: 0;
+    }
+  }
+
+  .image-wrapper-big{
+    position: absolute;
+    background-color: #000;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+
+    img{
+      position: relative;
+      top: 50%;
+      left: 10vw;
+      width: 75vw;
+
+      @extend .center-vertically;
+    }
+  }
+
+  ion-slides{
+    position: relative;
+    height: 37vh;
+    width: 100vw;
+
+    .sleep-slide, .description-slide{
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .image-slide{
+      .imagewrapper{
+        img{
+          height: 140px;
+          margin-top: -18px;
+        }
+
+        img.hiding{
+          display: none;
+        }
+      }
+    }
+
+    .sleep-slide{
+      .textwrapper{
+        position: relative;
+        width: 100%;
+
+        h2{
+          font-family: 'MontserratBold', sans-serif;
+          font-size: 1.2em;
+        }
+        h3{
+          font-family: 'MontserratLight', sans-serif;
+          font-size: 0.7em;
+          text-transform: uppercase;
+        }
+
+        .legende{
+          text-align: center;
+            .quality, .quantity{
+              display: inline-block;
+              width: 50%;
+              float: left;
+              text-align: center;
+
+              .min-max-wrapper{
+                height: 3em;
+                position: relative;
+                @extend .center-horizontally;
+                float: left;
+              }
+              p{
+                font-family: 'MontserratRegular', sans-serif;
+                font-size: 0.8em;
+
+              }
+
+              .min, .max{
+                background-color: #239070;
+                width: 1.2em;
+                height: 1.2em;
+                position: relative;
+                display: inline-block;
+                border-radius: 100%;
+                @extend .center-vertically;
+                float: left;
+              }
+
+              .max{
+                margin-left: 1em;
+              }
+            }
+
+            .quality{
+              .min{
+                width: 0.3em;
+                height: 0.3em;
+              }
+
+              .max{
+                width: 2em;
+                height: 2em;
+              }
+            }
+            .quantity{
+              .min{
+                opacity: 0.2;
+              }
+
+              .max{
+                opacity: 1;
+              }
+            }
+        }
+      }
+    }
+
+    .description-slide{
+
+      .loading-wrapper{
+        padding: 25px;
+        display: block;
+        opacity: 1;
+
+        .loader-block:first-child{
+          background-color: $yellow;
+          width: 20%;
+          height: 0.6em;
+          display: inline-block;
+        }
+
+        .loader-block:nth-child(2){
+          width: 75%;
+          display: inline-block;
+          margin-left: 5%;
+        }
+
+        .loader-block{
+          width: 100%;
+          height: 0.6em;
+          float: left;
+          background-color: $grey;
+          margin-bottom: 0.5em;
+        }
+      }
+
+
+      .textwrapper{
+        padding: 25px;
+        p{
+          margin: 0;
+          text-align: left;
+          font-size: 0.8em;
+          font-style: italic;
+        }
+
+        p.instructions{
+          text-align: center;
+          font-size: 0.7em;
+          font-style: normal;
+          margin-bottom: 1em;
+          color: darken($grey, 30%);
+        }
+
+        p.no-text{
+          font-style: normal;
+          text-align: center;
+          color: darken($grey, 20%);
+        }
+        p.no-text::before, p.instructions::before{
+          content: none;
+        }
+
+        p::before{
+          content: '';
+          position: relative;
+          background-color: $yellow;
+          width: 2.6em;
+          margin-right: 0.5em;
+          height: 0.6em;
+          display: inline-block;
+        }
+      }
     }
   }
 }

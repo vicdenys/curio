@@ -4,27 +4,103 @@
     <path class="a" d="M462.74,298.17V342.7a11.17,11.17,0,0,1-11.19,11.19H390.34a11.19,11.19,0,0,1-11.19-11.19V298.17H367.38c-3.06,0-3.77-1.77-1.57-4L417,243a5.61,5.61,0,0,1,7.94,0l51.17,51.17c2.19,2.19,1.5,4-1.57,4Z" transform="translate(-356.03 -232.88)" />
   </svg>
 
-  <div class="period-selector-wrapper">
-    <div class="arrow-left" (click)="getPeriod('back')"></div>
-    <p class="period-text">{{ periods[currentPeriodIndex] }}</p>
-    <div class="arrow-right" (click)="getPeriod('next')"></div>
+  <div class="graph-wrapper">
+    <p *ngIf='!isLoading'>Hoge opwinding</p>
+    <div *ngIf='!isLoading' class="graph" id="graph">
+      <div class="line-horizontal"></div>
+      <div class="line-horizontal"></div>
+      <div class="line-horizontal"></div>
+      <div class="line-horizontal"></div>
+      <div class="line-horizontal"></div>
+      <div class="line-vertical"></div>
+      <div class="line-vertical"></div>
+      <div class="line-vertical"></div>
+      <div class="line-vertical"></div>
+      <div class="line-vertical"></div>
+      <div class="indicators">
+        <ng-container *ngIf='!showingSleepResults'>
+          <div id="indicator" *ngFor="let result of resultsToShow" class="indicator_{{ result.id }}"
+                [ngStyle]="{'left': result.mood_coord_x + '%', 'top': result.mood_coord_y + '%'}"
+                (touchend)="selectResult(result.id)"
+                [ngClass]="result.id == selectedResult.id? 'selected': ''">
+              </div>
+        </ng-container>
+        <ng-container *ngIf='showingSleepResults'>
+          <div id="indicator" *ngFor="let result of resultsToShow" class="indicator_{{ result.id }} sleepresults-indic"
+                [ngStyle]="{'left': result.mood_coord_x + '%', 'top': result.mood_coord_y + '%', 'width': (result.sleep.hours * 1.2 + 3) + '%', 'height': (result.sleep.hours * 1.2 + 3) + '%', 'opacity': (result.sleep.quality/10), 'background-color': '#239070' }"
+                [ngClass]="!result.sleep.hours?'no-data': ''">
+              </div>
+        </ng-container>
+
+      </div>
+    </div>
+    <p *ngIf='!isLoading'>Slaperig</p>
+    <div class="loading-wrapper" *ngIf='isLoading'>
+      <div class="text-wrapper" >
+        <p>Resultaten laden...</p>
+        <img src="./assets/img/icon/loader.svg"  alt="loader">
+      </div>
+    </div>
   </div>
 
-  <div class="graph-wrapper">
-    <p>Hoge opwinding</p>
-    <div class="graph" id="graph">
-      <div class="line-horizontal"></div>
-      <div class="line-horizontal"></div>
-      <div class="line-horizontal"></div>
-      <div class="line-horizontal"></div>
-      <div class="line-horizontal"></div>
-      <div class="line-vertical"></div>
-      <div class="line-vertical"></div>
-      <div class="line-vertical"></div>
-      <div class="line-vertical"></div>
-      <div class="line-vertical"></div>
-      <div id="indicator"></div>
+  <div class="period-selector-wrapper">
+    <div class="arrow-wrapper-left"  (touchend)="getPeriod('back')">
+      <div class="arrow-left" ></div>
     </div>
-    <p>Slaperig</p>
+    <p class="period-text" *ngIf='!isLoading'>{{ periods[currentPeriodIndex] }}</p>
+    <div class="loading-wrapper" *ngIf='isLoading'>
+      <div class="loader-block"></div>
+    </div>
+    <div class="arrow-wrapper-right" (touchend)="getPeriod('next')">
+      <div class="arrow-right" ></div>
+    </div>
+  </div>
+
+  <ion-slides pager=true (ionSlideDidChange)="slideChanged()">
+    <ion-slide class="description-slide">
+      <div class="textwrapper" *ngIf='selectedResult && !isLoading'>
+        <p class="instructions">Selecteer een resultaat op de grafiek</p>
+        <p *ngIf='selectedResult.description != null'>"{{ selectedResult.description }}"</p>
+        <p class="no-text" *ngIf='selectedResult.description == null'>Geen context gegevens toegevoegd bij dit resultaat</p>
+      </div>
+      <div class="loading-wrapper" *ngIf='isLoading'>
+        <div class="loader-block"></div>
+        <div class="loader-block"></div>
+        <div class="loader-block"></div>
+        <div class="loader-block"></div>
+      </div>
+    </ion-slide>
+    <ion-slide class="sleep-slide">
+      <div class="textwrapper">
+        <h2>Slaapresultaten</h2>
+        <h3>Legende</h3>
+        <div class="legende">
+          <div class="quality">
+            <p>Kwantiteit</p>
+            <div class="min-max-wrapper">
+              <div class="min"></div>
+              <div class="max"></div>
+            </div>
+          </div>
+          <div class="quantity">
+            <p>Kwaliteit</p>
+            <div class="min-max-wrapper">
+              <div class="min"></div>
+              <div class="max"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide class="image-slide">
+      <div class="imagewrapper">
+        <img [ngClass]="showImageLoader? 'hiding': ''" id="mood_image" [src]="imgURl" alt="geen foto gevonden" (press)="showBigImage=true" (touchend)='showBigImage=false'>
+        <img *ngIf='showImageLoader' src="./assets/img/icon/loader.svg" alt="img loader">
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <div *ngIf='showBigImage'  class="image-wrapper-big"  (touchstart)='showBigImage=false'>>
+    <img [src]="imgURl" alt="no image founded">
   </div>
 </ion-content>

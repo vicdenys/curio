@@ -30,7 +30,7 @@
       <img (touchend)='presentActionSheet()'  src="./assets/img/icon/camera.svg" alt="">
     </div>
     <div class="img-wrapper" [ngClass]='module.image != ""?"imgdel":""'>
-        <img (touchend)='deleteImg(module)' src="{{moduleProv.pathForImage(module.image)}}"  alt="">
+        <img (touchend)='presentActionSheet()' src="{{moduleProv.pathForImage(module.image)}}"  alt="">
     </div>
   </div>
 </div>

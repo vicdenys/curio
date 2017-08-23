@@ -20,14 +20,18 @@ export class AuthProvider {
   public token: any;
   public user: any;
 
-  // private LOGIN_URL = '/api/authenticate';
-  // private RESET_URL = '/api/resetpassword';
-  // private SIGNUP_URL = "/api/register";
-  // private SIGNOUT_URL = '/api/logout';
-  private LOGIN_URL = 'http://curio.vicdenys.be/api/authenticate';
-  private RESET_URL = 'http://curio.vicdenys.be/api/resetpassword';
-  private SIGNUP_URL = "http://curio.vicdenys.be/api/register";
-  private SIGNOUT_URL = 'http://curio.vicdenys.be/api/logout';
+  private LOGIN_URL = '/api/authenticate';
+  private RESET_URL = '/api/resetpassword';
+  private SIGNUP_URL = "/api/register";
+  private SIGNOUT_URL = '/api/logout';
+  // private LOGIN_URL = 'http://curio.vicdenys.be/api/authenticate';
+  // private RESET_URL = 'http://curio.vicdenys.be/api/resetpassword';
+  // private SIGNUP_URL = "http://curio.vicdenys.be/api/register";
+  // private SIGNOUT_URL = 'http://curio.vicdenys.be/api/logout';
+  // private LOGIN_URL = 'http://curio-vicdenys.c9users.io/api/authenticate';
+  // private RESET_URL = 'http://curio-vicdenys.c9users.io/api/resetpassword';
+  // private SIGNUP_URL = "http://curio-vicdenys.c9users.io/api/register";
+  // private SIGNOUT_URL = 'http://curio-vicdenys.c9users.io/api/logout';
   private HEADERS = new Headers({
     'Accept': 'application/json',
     'Content-Type': 'application/json',

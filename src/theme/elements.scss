@@ -25,6 +25,19 @@
     font-size: 0.8em;
     color: #000;
     margin: 0.8em;
+    @extend .center-horizontally;
+    position: absolute !important;
+    margin: 0;
+  }
+
+  p:first-child{
+    -webkit-transform: translate(-50%, -150%);
+    transform: translate(-50%, -150%);
+  }
+
+  p:nth-child(3){
+    -webkit-transform: translate(-50%, 75%);
+    transform: translate(-50%, 75%);
   }
 
   .graph{
@@ -35,13 +48,18 @@
     @extend .center-horizontally;
     border-radius: 5px;
 
+    .indicators{
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
     #indicator{
       position: absolute;
       width: 1.1em;
       height: 1.1em;
       background-color: $dark-blue;
-      left: 50%;
-      top: 50%;
+
       border-radius: 100%;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);

@@ -1,8 +1,130 @@
 .settings{
-  background-color:  $yellow;
+  background-color:  #FFF;
   -webkit-box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
+
+  h1{
+    @extend .title;
+    margin-top: 1.5em;
+    position: relative;
+  }
+
+  h1::after{
+    content: '';
+    position: absolute;
+    width: 2em;
+    height: 0.35em;
+    background-color: $yellow;
+    top: 120%;
+    left: 0;
+  }
+
+  .notifications, .data{
+    margin-top: 3em;
+
+    h3{
+      font-size: 0.9em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    ul{
+      margin-left: -1.5em;
+      width: calc(100% + 3em);
+      padding: 0 1.5em;
+      list-style: none;
+      border-bottom: solid 1px $light-grey;
+      border-top: solid 1px $light-grey;
+      margin-top: 0;
+
+      li{
+        border-top: solid 1px $light-grey;
+        position: relative;
+        padding: 1em 0;
+
+        p, ion-label{
+          font-family: 'MontserratSemiBold';
+          font-size: 1em;
+          margin: 0;
+        }
+
+        ion-item{
+          padding: 0;
+
+          .item-inner{
+            border: none;
+            padding: 0;
+
+            ion-toggle{
+              padding: 0;
+            }
+          }
+        }
+
+        .item-ios{
+          font-size: 1em;
+        }
+
+        .toggle-ios{
+          height: 27px;
+
+          .toggle-inner{
+            height: 23px;
+            width: 23px;
+          }
+        }
+        .toggle-ios.toggle-checked{
+          .toggle-inner{
+            transform: translate3d(23px, 0, 0);
+          }
+
+          .toggle-icon{
+            background-color: $yellow;
+          }
+        }
+      }
+
+      li:first-child{
+        border: none;
+      }
+
+      li::after{
+        content: '';
+        position: absolute;
+        @extend .center-vertically;
+        right: 0;
+        width: 0;
+      	height: 0;
+      	border-top: 5px solid transparent;
+      	border-left: 7px solid #000;
+      	border-bottom: 5px solid transparent;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .data{
+    ul{
+      border-bottom: none;
+
+      li{
+        padding-top: 0;
+
+        p{
+          font-family: 'MontserratRegular';
+          font-size: 0.9em;
+          color: darken($grey, 40%);
+          margin-top: 0;
+          line-height: 1.3em;
+        }
+      }
+
+      li::after{
+        display: none;
+      }
+    }
+  }
 
   .scroll-content{
     padding: 1em 1.5em;
@@ -13,8 +135,7 @@
     width: 1.5em;
 
     .a{
-      stroke-width: 16px;
-      stroke: #FFF;
+      stroke: #000;
     }
   }
 
@@ -26,6 +147,8 @@
     font-size: 0.8em;
     color: #FFF;
     width: 100%;
-    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 }

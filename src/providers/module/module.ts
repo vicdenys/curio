@@ -19,14 +19,18 @@ import { File } from '@ionic-native/file';
 @Injectable()
 export class ModuleProvider {
 
-  // private READMODULES_URL = '/api/modules';
-  // private SLEEP_URL = '/api/savesleepresult';
-  // private MOOD_URL = '/api/savemoodresult';
-  // private MOOD_IMAGE_URL = '/api/savemoodphoto';
-  private READMODULES_URL = 'http://curio.vicdenys.be/api/modules';
-  private SLEEP_URL = 'http://curio.vicdenys.be/api/savesleepresult';
-  private MOOD_URL = 'http://curio.vicdenys.be/api/savemoodresult';
-  private MOOD_IMAGE_URL = 'http://curio.vicdenys.be/api/savemoodphoto';
+  private READMODULES_URL = '/api/modules';
+  private SLEEP_URL = '/api/savesleepresult';
+  private MOOD_URL = '/api/savemoodresult';
+  private MOOD_IMAGE_URL = '/api/savemoodphoto';
+  // private READMODULES_URL = 'http://curio.vicdenys.be/api/modules';
+  // private SLEEP_URL = 'http://curio.vicdenys.be/api/savesleepresult';
+  // private MOOD_URL = 'http://curio.vicdenys.be/api/savemoodresult';
+  // private MOOD_IMAGE_URL = 'http://curio.vicdenys.be/api/savemoodphoto';
+  // private READMODULES_URL = 'http://curio-vicdenys.c9users.io/api/modules';
+  // private SLEEP_URL = 'http://curio-vicdenys.c9users.io/api/savesleepresult';
+  // private MOOD_URL = 'http://curio-vicdenys.c9users.io/api/savemoodresult';
+  // private MOOD_IMAGE_URL = 'http://curio-vicdenys.c9users.io/api/savemoodphoto';
   private HEADERS = new Headers({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -107,7 +111,7 @@ export class ModuleProvider {
           .map(res => res.json())
           .subscribe(
             data => {
-              this.uploadMoodImage(module, data.result_id).then(data => resolve(data), err => reject(err));
+              this.uploadMoodImage(module, data.result_id, data.user_id).then(data => resolve(data), err => reject(err));
               resolve(data);
             },
             err => {
@@ -127,13 +131,13 @@ export class ModuleProvider {
       }
     }
 
-  public uploadMoodImage(module, resultID){
+  public uploadMoodImage(module, resultID, userID){
     let options = {
       fileKey: "file",
       fileName: 'moodPhoto',
       chunkedMode: false,
       mimeType: "multipart/form-data",
-      params : {'fileName': 'moodPhoto', 'mood_id': resultID}
+      params : {'fileName': 'moodPhoto', 'mood_id': resultID, 'user_id': userID}
     };
 
     const fileTransfer: TransferObject = this.transfer.create();
