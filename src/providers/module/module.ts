@@ -19,18 +19,18 @@ import { File } from '@ionic-native/file';
 @Injectable()
 export class ModuleProvider {
 
-  private READMODULES_URL = '/api/modules';
-  private SLEEP_URL = '/api/savesleepresult';
-  private MOOD_URL = '/api/savemoodresult';
-  private MOOD_IMAGE_URL = '/api/savemoodphoto';
+  // private READMODULES_URL = '/api/modules';
+  // private SLEEP_URL = '/api/savesleepresult';
+  // private MOOD_URL = '/api/savemoodresult';
+  // private MOOD_IMAGE_URL = '/api/savemoodphoto';
   // private READMODULES_URL = 'http://curio.vicdenys.be/api/modules';
   // private SLEEP_URL = 'http://curio.vicdenys.be/api/savesleepresult';
   // private MOOD_URL = 'http://curio.vicdenys.be/api/savemoodresult';
   // private MOOD_IMAGE_URL = 'http://curio.vicdenys.be/api/savemoodphoto';
-  // private READMODULES_URL = 'http://curio-vicdenys.c9users.io/api/modules';
-  // private SLEEP_URL = 'http://curio-vicdenys.c9users.io/api/savesleepresult';
-  // private MOOD_URL = 'http://curio-vicdenys.c9users.io/api/savemoodresult';
-  // private MOOD_IMAGE_URL = 'http://curio-vicdenys.c9users.io/api/savemoodphoto';
+  private READMODULES_URL = 'http://curio-vicdenys.c9users.io/api/modules';
+  private SLEEP_URL = 'http://curio-vicdenys.c9users.io/api/savesleepresult';
+  private MOOD_URL = 'http://curio-vicdenys.c9users.io/api/savemoodresult';
+  private MOOD_IMAGE_URL = 'http://curio-vicdenys.c9users.io/api/savemoodphoto';
   private HEADERS = new Headers({
     'Accept': 'application/json',
     'Content-Type': 'application/json',

@@ -22,24 +22,31 @@ export class ResultsPage {
   private results:Array<any> = [];
   private sleepResults:Array<any> = [];
   private resultsToShow:Array<any>;
+  private strategies:Array<any> = [];
+  private strategiesToShow:Array<any> = [];
   private selectedResult;
   private loading:any;
   private isLoading:boolean = false;
   private moodresultsLoading:boolean = false;
   private sleepresultsLoading:boolean = false;
+  private strategiesLoading:boolean = false;
   private showingSleepResults:boolean = false;
   public showBigImage:boolean = false;
   public showImageLoader:boolean = true;
   public imgURl:string = './assets/img/icon/loader.svg';
-  private RESULTS_URL = '/api/getresults';
-  private SLEEPRESULTS_URL = '/api/getsleepresults';
-  private IMAGE_URL = '/api/storage';
+  private noStrategies:boolean = true;
+  // private RESULTS_URL = '/api/getresults';
+  // private SLEEPRESULTS_URL = '/api/getsleepresults';
+  // private IMAGE_URL = '/api/storage';
+  // private STRATEGIES_URL = '/api/getstrategies';
   // private RESULTS_URL = 'http://curio.vicdenys.be/api/getresults';
   // private SLEEPRESULTS_URL = 'http://curio.vicdenys.be/api/getsleepresults';
-  // private IMAGE_URL = 'http://curio.vicdenys.be/api/storage'
-  // private RESULTS_URL = 'http://curio-vicdenys.c9users.io/api/getresults';
-  // private SLEEPRESULTS_URL = 'http://curio-vicdenys.c9users.io/api/getsleepresults';
-  // private IMAGE_URL = 'http://curio-vicdenys.c9users.io/api/storage'
+  // private IMAGE_URL = 'http://curio.vicdenys.be/api/storage';
+  // private STRATEGIES_URL = 'http://curio.vicdenys.be/api/getstrategies';
+  private RESULTS_URL = 'http://curio-vicdenys.c9users.io/api/getresults';
+  private SLEEPRESULTS_URL = 'http://curio-vicdenys.c9users.io/api/getsleepresults';
+  private IMAGE_URL = 'http://curio-vicdenys.c9users.io/api/storage'
+  private STRATEGIES_URL = 'http://curio-vicdenys.c9users.io/api/getstrategies';
   private HEADERS = new Headers({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -54,6 +61,7 @@ export class ResultsPage {
         this.isLoading = true;
         this.getResults();
         this.getSleepResults();
+        this.getStrategies();
       }
   }
 
@@ -106,6 +114,8 @@ export class ResultsPage {
         break;
       default:
     }
+
+    console.log(this.resultsToShow);
   }
 
   private filterPeriods(date){
@@ -115,16 +125,18 @@ export class ResultsPage {
     this.resultsToShow = [];
 
     for(let result in this.results){
-      let dateResult = new Date(this.results[result].created_at);
+      let dateResult = new Date(Date.parse(this.results[result].created_at.replace(/ /g,"T")));
       if(dateResult >= d){
         this.resultsToShow.push(this.results[result]);
       }
     }
 
+    console.log(this.resultsToShow);
     if(this.resultsToShow.length){
         this.selectResult(this.resultsToShow[0].id);
     } else {
       this.selectedResult = [];
+      this.noStrategies = true;
     }
   }
 
@@ -160,9 +172,26 @@ export class ResultsPage {
       )
   }
 
+  private getStrategies(){
+    this.strategiesLoading = true;
+    this.http.get(this.STRATEGIES_URL + '?token=' + this.auth.token ,{ headers: this.HEADERS })
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.strategies = data;
+          this.strategiesLoading = false;
+          this.checkIfLoading();
+          console.log(this.strategies);
+        },
+        err => {
+          this.showAlert('Oeps!', 'Er ging iets mis bij het ophalen van je resultaten. Probeer later opnieuw', 'OK');
+        }
+      )
+  }
+
   private processSleepResults(){
     for(let result in this.results){
-        let rDate = new Date(this.results[result].created_at)
+        let rDate = new Date(Date.parse(this.results[result].created_at.replace(/ /g,"T")))
         let rTommorow = new Date(rDate.setDate(rDate.getDate() + 1));
         let rYesterday = new Date(rDate.setDate(rDate.getDate() - 1));
         rTommorow.setHours(23,59,59,999);
@@ -172,7 +201,7 @@ export class ResultsPage {
 
         for (let sleepResult in this.sleepResults){
 
-          let sDate = new Date(this.sleepResults[sleepResult].completed);
+          let sDate = new Date(Date.parse(this.sleepResults[sleepResult].completed.replace(/ /g,"T")));
 
           if(sDate <= rTommorow && sDate >= rYesterday) {
             resultsAround.push(this.sleepResults[sleepResult]);
@@ -201,7 +230,33 @@ export class ResultsPage {
     this.selectedResult = this.getResultById(id);
     console.log(this.selectedResult);
 
+    this.filterStrategies();
+
     this.changeImg(id);
+  }
+
+  private filterStrategies(){
+    let str = [];
+
+    for (let strategy in this.strategies){
+      if(this.strategies[strategy].x == Math.floor(this.selectedResult.mood_coord_x/10)*10){
+        if(this.strategies[strategy].y == Math.floor(this.selectedResult.mood_coord_y/10)*10){
+          str.push(this.strategies[strategy]);
+        }
+      }
+    }
+
+    this.strategiesToShow = str;
+
+    if( this.strategiesToShow.length){
+        this.noStrategies = false;
+    } else {
+        this.noStrategies = true;
+    }
+
+
+
+
   }
 
   private changeImg(mood_id){
@@ -232,7 +287,7 @@ export class ResultsPage {
   }
 
   private checkIfLoading(){
-    if(!this.sleepresultsLoading && !this.moodresultsLoading){
+    if(!this.sleepresultsLoading && !this.moodresultsLoading && !this.strategiesLoading){
       this.isLoading = false;
       this.showResults();
       this.processSleepResults();

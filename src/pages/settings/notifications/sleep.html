@@ -1,0 +1,25 @@
+<ion-content class="mood-not-settings">
+  <ion-icon id="home_icon" name="arrow-back" (touchend)="closeSettings()"></ion-icon>
+
+  <h1>Berichtgeving</h1>
+
+  <div class="data">
+    <h3>Slaapmeter</h3>
+    <ul>
+      <li>
+        <ion-item>
+          <ion-label>Meldingen inschakelen</ion-label>
+          <ion-toggle [(ngModel)]="timeEnabled" (ionChange)='notificationChanged()'></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tijd van melding</ion-label>
+          <ion-datetime disabled='{{ !timeEnabled }}' displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="time" (ionChange)="dateChanged($event)"></ion-datetime>
+        </ion-item>
+        <p>
+          Als je meldingen inschakelt zal je elke dag een melding krijgen op de geselecteerde tijd.
+        </p>
+      </li>
+    </ul>
+  </div>
+
+</ion-content>

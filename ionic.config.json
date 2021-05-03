@@ -5,7 +5,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://curio.local/api"
+      "proxyUrl": "http://curio-vicdenys.c9users.io/api"
     }
   ]
 }

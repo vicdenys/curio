@@ -1,6 +1,15 @@
 <div id="wrapperbox">
   <div class="first-wrapper wrapper" [ngClass]='modulesPage.wrapperIndex==1?"show-wrapper":""'>
     <h2>Hoe voel je je vandaag?</h2>
+    <div class="spritecontainer">
+      <div id=faceSpriteContainer
+        [ngStyle]="{'background-position':  backgroundPosFaceSprite + 'px'}"
+      ></div>
+      <div id=bodySpriteContainer
+        [ngStyle]="{'background-position':  backgroundPosBodySprite + 'px'}"
+      ></div>
+    </div>
+
 
     <div class="graph-wrapper">
       <p>Hoge opwinding</p>
@@ -16,16 +25,37 @@
         <div class="line-vertical"></div>
         <div class="line-vertical"></div>
         <div id="indicator"></div>
+        <div class="safezone"></div>
       </div>
       <p>Slaperig</p>
+      <div class="leg">
+        <div class="red"></div>
+        <p>veilige zone</p>
+      </div>
     </div>
   </div>
   <div class="second-wrapper wrapper" [ngClass]='modulesPage.wrapperIndex==2?"show-wrapper":""'>
     <h2>In welke situatie voelde je deze gevoelens?</h2>
+    <div class="spritecontainer">
+      <div id=faceSpriteContainer
+        [ngStyle]="{'background-position':  backgroundPosFaceSprite + 'px'}"
+      ></div>
+      <div id=bodySpriteContainer
+        [ngStyle]="{'background-position':  backgroundPosBodySprite + 'px'}"
+      ></div>
+    </div>
     <ion-textarea placeholder="Type hier..." type="text" name="moodText" [(ngModel)]='module.moodText'></ion-textarea>
   </div>
   <div class="third-wrapper wrapper" [ngClass]='modulesPage.wrapperIndex==3?"show-wrapper":""'>
     <h2>Voeg een stemmingsfoto toe (optioneel)</h2>
+    <div class="spritecontainer">
+      <div id=faceSpriteContainer
+        [ngStyle]="{'background-position':  backgroundPosFaceSprite + 'px'}"
+      ></div>
+      <div id=bodySpriteContainer
+        [ngStyle]="{'background-position':  backgroundPosBodySprite + 'px'}"
+      ></div>
+    </div>
     <div class="img-wrapper" [ngClass]='module.image == ""?"show":""'>
       <img (touchend)='presentActionSheet()'  src="./assets/img/icon/camera.svg" alt="">
     </div>

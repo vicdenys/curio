@@ -16,6 +16,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { StartPage } from '../pages/start/start';
 import { PasswordPage } from '../pages/auth/password';
 import { ResultsPage } from '../pages/results/results';
+import { MoodNotSettingsPage } from '../pages/settings/notifications/mood';
 import { AuthProvider} from '../providers/auth/auth';
 import { ModuleProvider} from '../providers/module/module';
 import { ParallaxHeaderDirective } from '../directives/parallax-header/parallax-header';
@@ -26,7 +27,11 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
+import { DatePicker } from '@ionic-native/date-picker';
 import { File } from '@ionic-native/file';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { SleepNotSettingsPage } from '../pages/settings/notifications/sleep';
 
 
 
@@ -47,7 +52,9 @@ const cloudSettings: CloudSettings = {
     ParallaxHeaderDirective,
     SleepmoduleDirective,
     MoodmoduleDirective,
-    ResultsPage
+    ResultsPage,
+    MoodNotSettingsPage,
+    SleepNotSettingsPage,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,9 @@ const cloudSettings: CloudSettings = {
     SettingsPage,
     StartPage,
     PasswordPage,
-    ResultsPage
+    ResultsPage,
+    MoodNotSettingsPage,
+    SleepNotSettingsPage,
   ],
   providers: [
     StatusBar,
@@ -79,6 +88,9 @@ const cloudSettings: CloudSettings = {
     Diagnostic,
     Transfer,
     File,
+    DatePicker,
+    LocalNotifications,
+    NativeStorage,
   ]
 
 })

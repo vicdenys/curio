@@ -31,6 +31,8 @@ export class MoodmoduleDirective {
   private lastImage: string = null;
   private loading: any;
   private success: any;
+  private backgroundPosFaceSprite:number = -116;
+  private backgroundPosBodySprite:number = -184;
 
   private imagePickerOptions = {
     maximumImagesCount: 1,
@@ -62,8 +64,8 @@ export class MoodmoduleDirective {
     // Enable slideChange
     this.modulesPage.slides.lockSwipes(false);
     let ind = document.getElementById('indicator');
-    ind.style.width = '1.1em';
-    ind.style.height = '1.1em';
+    ind.style.width = '1.5em';
+    ind.style.height = '1.5em';
   }
 
   public graphTouchMove(event){
@@ -72,8 +74,8 @@ export class MoodmoduleDirective {
 
   public graphTouchStart(event){
     let ind = document.getElementById('indicator');
-    ind.style.width = '1.5em';
-    ind.style.height = '1.5em';
+    ind.style.width = '1.8em';
+    ind.style.height = '1.8em';
 
     this.drawIndicator(event);
 
@@ -82,6 +84,22 @@ export class MoodmoduleDirective {
     // Disable slideChange
     this.modulesPage.slides.lockSwipes(true);
   }
+
+  private updateSprites(x, y){
+    if(x ==100){
+      this.backgroundPosFaceSprite = 1506 - 12 * 116;
+    } else{
+      this.backgroundPosFaceSprite = 1506 - (Math.floor(x/100*13) * 116);
+    }
+
+    if(y ==100){
+      this.backgroundPosBodySprite = 2392  - 12 * 184;
+    } else{
+      this.backgroundPosBodySprite = 2392  - (Math.floor(y/100*13) * 184);
+    }
+
+  };
+
 
   public getWrapperIndex(){
 
@@ -99,6 +117,8 @@ export class MoodmoduleDirective {
 
     x = x>100 ? 100: x;
     y = y>100 ? 100: y;
+
+    this.updateSprites(x, y);
 
     //change indicator
     let ind = document.getElementById('indicator');

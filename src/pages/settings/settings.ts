@@ -3,10 +3,13 @@ import { NavController, Config, LoadingController, AlertController, App } from '
 import { ModalSlideDownTransition } from '../../classes/SlideDownTransition';
 import { ModalSlideUpTransition } from '../../classes/SlideUpTransition';
 
+import { MoodNotSettingsPage } from '../../pages/settings/notifications/mood';
+import { SleepNotSettingsPage } from '../../pages/settings/notifications/sleep';
 import { StartPage } from '../start/start';
 import { HomePage } from '../home/home';
 import { AuthProvider} from '../../providers/auth/auth';
 import { tokenNotExpired } from 'angular2-jwt';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 @Component({
@@ -16,14 +19,44 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class SettingsPage {
 
   private loading: any;
+  private moodNotTime:string = 'uit';
+  private sleepNotTime:string = 'uit';
 
   constructor(public navCtrl: NavController, private config: Config, private auth: AuthProvider,
-    private loadingCtrl: LoadingController, public alertCtrl: AlertController, private app: App) {
+    private loadingCtrl: LoadingController, public alertCtrl: AlertController, private app: App,
+   private nativeStorage: NativeStorage) {
     this.setCustomTransitions();
+
+
   }
 
   ionViewCanEnter(): boolean{
    return tokenNotExpired(null, this.auth.token);
+  }
+
+  ionViewDidEnter(){
+    this.nativeStorage.getItem('moodNotTime')
+      .then(
+        data => {
+          if(data.moodNotTimeEnabled){
+            this.moodNotTime = data.moodNotTime;
+          }else{
+            this.moodNotTime = 'uit';
+          }
+        },
+        error => console.error(error)
+    );
+    this.nativeStorage.getItem('sleepNotTime')
+      .then(
+        data => {
+          if(data.sleepNotTimeEnabled){
+            this.sleepNotTime = data.sleepNotTime;
+          }else{
+            this.sleepNotTime = 'uit';
+          }
+        },
+        error => console.error(error)
+    );
   }
 
   private setCustomTransitions() {
@@ -74,6 +107,13 @@ export class SettingsPage {
         buttons: [btnTxt]
       });
     alert.present();
+  }
+
+  private goToMoodNotPage(){
+    this.navCtrl.push(MoodNotSettingsPage);
+  }
+  private goToSleepNotPage(){
+    this.navCtrl.push(SleepNotSettingsPage);
   }
 
 }

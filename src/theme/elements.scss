@@ -17,8 +17,10 @@
 
 .graph-wrapper{
   position: relative;
-  margin-top: 25vw;
+  margin-top: 5vw;
   text-align: center;
+
+
 
   p{
     font-family: 'MontserratRegular', sans-serif;
@@ -40,6 +42,46 @@
     transform: translate(-50%, 75%);
   }
 
+  .safezone{
+    position: absolute;
+    background-color: $red-danger;
+    opacity: 0.1 !important;
+    width: 66.666666%;
+    height: 66.66666%;
+    left: 16.66666%;
+    top: 16.666666%;
+  }
+
+  .leg{
+    text-align: left;
+
+    *{
+
+    }
+
+    .red{
+
+    }
+
+    p{
+      position: relative;
+      margin-top: 18%;
+      text-transform: uppercase;
+    }
+
+    p::before{
+      content: '';
+      position: relative;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background-color: $red-danger;
+      opacity: 0.1 !important;
+      margin-right: 1em;
+      transform: translateY(25%);
+    }
+  }
+
   .graph{
     width: 51vw;
     height: 51vw;
@@ -56,8 +98,8 @@
 
     #indicator{
       position: absolute;
-      width: 1.1em;
-      height: 1.1em;
+      width: 1.5em;
+      height: 1.5em;
       background-color: $dark-blue;
 
       border-radius: 100%;

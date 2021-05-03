@@ -34,7 +34,7 @@
             <h1 class="moduleTitle">{{ module.title }}</h1>
             <p class="moduleDescription">{{ module.description }}</p>
           </div>
-          <p class="pressText" [ngClass]="contentShowing?'show-content':''">Houd ingedrukt om te openen</p>
+          <p class="pressText" [ngClass]="contentShowing?'show-content':''">Houd scherm ingedrukt om te openen</p>
 
           <div *ngIf='module.moduleType=="read-module"' class="content-wrapper main-content" [innerHTML]="module.content" >
 

@@ -17,17 +17,18 @@
       <div class="line-vertical"></div>
       <div class="line-vertical"></div>
       <div class="line-vertical"></div>
+      <div class="safezone"></div>
       <div class="indicators">
         <ng-container *ngIf='!showingSleepResults'>
           <div id="indicator" *ngFor="let result of resultsToShow" class="indicator_{{ result.id }}"
-                [ngStyle]="{'left': result.mood_coord_x + '%', 'top': result.mood_coord_y + '%'}"
+                [ngStyle]="{'top': result.mood_coord_x + '%', 'left': result.mood_coord_y + '%'}"
                 (touchend)="selectResult(result.id)"
                 [ngClass]="result.id == selectedResult.id? 'selected': ''">
               </div>
         </ng-container>
         <ng-container *ngIf='showingSleepResults'>
           <div id="indicator" *ngFor="let result of resultsToShow" class="indicator_{{ result.id }} sleepresults-indic"
-                [ngStyle]="{'left': result.mood_coord_x + '%', 'top': result.mood_coord_y + '%', 'width': (result.sleep.hours * 1.2 + 3) + '%', 'height': (result.sleep.hours * 1.2 + 3) + '%', 'opacity': (result.sleep.quality/10), 'background-color': '#239070' }"
+                [ngStyle]="{'top': result.mood_coord_x + '%', 'left': result.mood_coord_y + '%', 'width': (result.sleep.hours * 1.2 + 3) + '%', 'height': (result.sleep.hours * 1.2 + 3) + '%', 'opacity': (result.sleep.quality/10), 'background-color': '#239070' }"
                 [ngClass]="!result.sleep.hours?'no-data': ''">
               </div>
         </ng-container>
@@ -97,6 +98,21 @@
         <img [ngClass]="showImageLoader? 'hiding': ''" id="mood_image" [src]="imgURl" alt="geen foto gevonden" (press)="showBigImage=true" (touchend)='showBigImage=false'>
         <img *ngIf='showImageLoader' src="./assets/img/icon/loader.svg" alt="img loader">
       </div>
+    </ion-slide>
+    <ion-slide class="strategies-slide">
+      <div class="strategies-wrapper">
+        <p class="exp">Deze strategieën kunnen je helpen om je geselecteerde gemoed te stabiliseren en/of te onderhouden.</p>
+        <div class="strategy-box">
+          <p class="no-strategies" *ngIf='noStrategies && !strategiesLoading'>
+            Geen strategieën gevonden.
+          </p>
+          <img *ngIf='strategiesLoading' src="./assets/img/icon/loader.svg" alt="img loader">
+          <div class="strategy" *ngFor="let strategy of strategiesToShow" >
+            <p>{{ strategy.description }}</p>
+          </div>
+        </div>
+      </div>
+
     </ion-slide>
   </ion-slides>
 

@@ -24,6 +24,7 @@ export class SleepmoduleDirective {
   private success: any;
   private AMOUNTMINMAX = {min: 0, max: 15}
   private QUALITYMINMAX = {min: 0, max: 10}
+  private backgroundPosFaceSleepSprite:number = 1276 - 5 * 116;
 
   constructor(private modulesPage: ModulesPage, private moduleProv: ModuleProvider, private loadingCtrl: LoadingController,
         public alertCtrl: AlertController) {
@@ -48,6 +49,8 @@ export class SleepmoduleDirective {
     } else {
       this.modulesPage.wrapperIndex ++;
     }
+
+    this.updateSprites(this.module.sleepQuality);
   }
 
   private showSuccess(){
@@ -79,12 +82,17 @@ export class SleepmoduleDirective {
       );
   }
 
+  private updateSprites(x){
+      this.backgroundPosFaceSleepSprite = 1276 - x * 116;
+  };
+
   public adjustQuality(mp){
     if(mp=='+' && this.module.sleepQuality < this.QUALITYMINMAX.max){
         this.module.sleepQuality ++;
     } else if (mp== '-' && this.module.sleepQuality > this.QUALITYMINMAX.min){
        this.module.sleepQuality --;
     }
+    this.updateSprites(this.module.sleepQuality);
   }
 
   public adjustAmount(mp){
@@ -92,7 +100,9 @@ export class SleepmoduleDirective {
         this.module.sleepHours ++;
     } else if (mp== '-' && this.module.sleepHours > this.AMOUNTMINMAX.min){
        this.module.sleepHours --;
-    } 
+    }
+
+
   }
 
   public deleteImg(module){

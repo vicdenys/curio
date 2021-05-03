@@ -65,6 +65,7 @@
     #mood-module{
       background-color: #FFF;
 
+
       .moduleTitle{
         color: $dark-blue;
       }
@@ -85,7 +86,7 @@
         text-align: left !important;
         color: #000;
         height: 55vw;
-        margin-top: 35vw;
+        margin-top: 5vw;
         width: 100%;
       }
 
@@ -98,7 +99,7 @@
         width: 8em;
         height: 8em;
         border-radius: 3%;
-        margin-top: 26vw;
+        margin-top: 15vw;
       }
 
       .img-wrapper.show, .img-wrapper.imgdel{
@@ -126,11 +127,92 @@
         }
       }
 
+      .show-content{
+
+        .spritecontainer{
+          margin-top: -40%;
+        }
+
+        #faceSleepSpriteContainer{
+          width: 116px;
+          height: 121px;
+          display: block;
+          position: relative;
+          @extend .center-horizontally;
+          opacity: 1;
+
+          -webkit-transform:  translateX(-50%) scale(0.8,0.8);
+          transform:  translateX(-50%) scale(0.8,0.8);
+          background-position: 0px;
+
+          -webkit-transition: none;
+          transition: none;
+
+          background-image: url("../assets/img/face-sleep-spritesheet.png");
+        }
+      }
+
     }
 
     #mood-module{
       .content-wrapper{
         background-color: #E8E8E8;
+
+
+
+        .second-wrapper, .third-wrapper{
+          .spritecontainer{
+            margin-top: -27vw !important;
+          }
+
+        }
+
+        .first-wrapper{
+          .spritecontainer{
+            margin-top: 0vw;
+          }
+        }
+
+
+
+        #faceSpriteContainer{
+          width: 116px;
+          height: 121px;
+          display: block;
+          position: relative;
+          @extend .center-horizontally;
+          opacity: 1;
+
+          -webkit-transform:  translateX(-50%) scale(0.4,0.4);
+          transform:  translateX(-50%) scale(0.4,0.4);
+          background-position: 0px;
+
+          -webkit-transition: none;
+          transition: none;
+
+          background-image: url("../assets/img/face-spritesheet.png");
+        }
+
+        #bodySpriteContainer{
+          width: 184px;
+          height: 144px;
+          display: block;
+          position: relative;
+          margin-top: -93px;
+          margin-left: -1px;
+          @extend .center-horizontally;
+          opacity: 1;
+
+          -webkit-transform:  translateX(-50%) scale(0.6,0.6);
+          transform:  translateX(-50%) scale(0.4,0.4);
+          background-position: 0px;
+
+          -webkit-transition: none;
+          transition: none;
+
+          background-image: url("../assets/img/body-spritesheet.png");
+        }
+
       }
 
 
@@ -268,6 +350,14 @@
           z-index: 1000;
           width: 100%;
           padding-bottom: 0;
+
+          #faceSpriteContainer{
+            opacity: 1;
+          }
+
+          .spritecontainer{
+            margin-top: -35vw;
+          }
         }
 
         .wrapper{

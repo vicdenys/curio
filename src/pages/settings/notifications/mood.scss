@@ -1,8 +1,10 @@
-.settings{
+.mood-not-settings{
   background-color:  #FFF;
   -webkit-box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 33px -1px rgba(0,0,0,0.75);
+
+
 
   h1{
     @extend .title;
@@ -22,14 +24,6 @@
 
   .notifications, .data{
     margin-top: 3em;
-
-    .time{
-      position: absolute;
-      right: 15px;
-      font-family: 'MontserratRegular';
-      color: $grey;
-      @extend .center-vertically;
-    }
 
     h3{
       font-size: 0.9em;
@@ -140,7 +134,9 @@
 
   #home_icon{
     display: block;
-    width: 1.5em;
+    width: 1.2em;
+    font-size: 1.5em;
+    border: none;
 
     .a{
       stroke: #000;

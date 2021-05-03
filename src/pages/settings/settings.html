@@ -9,29 +9,18 @@
   <div class="notifications">
     <h3>Berichtgeving</h3>
     <ul>
-      <li>
+      <li (touchstart)='goToMoodNotPage()' >
         <p>Stemmingsmeter</p>
+        <p class="time">{{ moodNotTime }}</p>
       </li>
-      <li>
+      <li (touchstart)='goToSleepNotPage()' >
         <p>Slaapmeter</p>
+        <p class="time">{{ sleepNotTime }}</p>
       </li>
     </ul>
   </div>
 
-  <div class="data">
-    <h3>Data</h3>
-    <ul>
-      <li>
-        <ion-item>
-          <ion-label> Beweging bijhouden</ion-label>
-          <ion-toggle checked="false"></ion-toggle>
-        </ion-item>
-        <p>
-          Door je bewegingspatroon bij te houden krijg je een beter inzicht op je gemoedstoestand. Weinig of veel verplaatsing kan namelijk een belangrijk symptoom zijn van een manische en/of depresieve periode.
-        </p>
-      </li>
-    </ul>
-  </div>
+  
 
   <button class="link logoutBtn" (click)="logout()">Uitloggen</button>
 

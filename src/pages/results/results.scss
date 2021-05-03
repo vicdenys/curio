@@ -45,6 +45,8 @@
 
       #indicator{
         opacity: 0.3;
+        left: 50%;
+        top: 50%;
       }
 
       #indicator.selected{
@@ -169,10 +171,56 @@
         img{
           height: 140px;
           margin-top: -18px;
+          font-size: 0.7em;
+          font-family: 'MontserratRegular', sans-serif;
+          color: darken($grey, 50%);
         }
 
         img.hiding{
           display: none;
+        }
+      }
+    }
+
+    .strategies-slide{
+
+      align-items: flex-start;
+
+      .strategies-wrapper{
+        position: relative;
+        width: 100%;
+        padding-left: 1em;
+        padding-right: 1em;
+        overflow: hidden;
+        overflow-y: scroll;
+        height: 30vh;
+
+        .no-strategies{
+          color: darken($grey, 50%);
+        }
+
+        .strategy{
+          p{
+            margin-bottom: 1.6em;
+            font-size: 0.8em;
+            font-family: 'MontserratRegular';
+            border-left: solid 2px #FEBA00;
+            color: #000;
+            padding-left: 1em;
+            text-align: left;
+          }
+        }
+
+        h2{
+          font-family: 'MontserratBold', sans-serif;
+          font-size: 1.2em;
+        }
+
+        .exp{
+          font-size: 0.7em;
+          font-family: 'MontserratRegular', sans-serif;
+          margin-bottom: 2em;
+          color: darken($grey, 50%);
         }
       }
     }
